@@ -60,7 +60,6 @@ for data in os.listdir("C:/Users/BIPIN/Documents/Python Venv/RC2Text/RC"):
             if block == word:
                 dt.remove(word)
 
-    extract_name = dt[0]
     dt.remove(dt[0])
 
     for i in dt:
@@ -84,17 +83,13 @@ for data in os.listdir("C:/Users/BIPIN/Documents/Python Venv/RC2Text/RC"):
     for i in range(2):
         date_list.append('')
 
-    extract_name = extract_name.replace('\n',' ')
-    extract_name = extract_name.replace(':',' ')
+
     def Convert(string):
         li = list(string.split(" "))
         return li
-    extract_list = Convert(extract_name)
-    for i in extract_list:
-        if(i==''):
-            extract_list.remove(i)
 
-    for i in extract_list:
+
+    for i in dt:
         if(i == 'Name &Address' or i == '&Address' or i == '&ADDRESS' or i == 'L.M.V.' or i == 'NAME'):
             if flag ==0:
                 flag = 1
@@ -114,10 +109,10 @@ for data in os.listdir("C:/Users/BIPIN/Documents/Python Venv/RC2Text/RC"):
                 reg_no = i
                 print("Regn Number: {}" .format(reg_no))
         if((len(i)==11 or len(i)==12)):
-            if i and i[0].isalpha() and i[4]=='-' and i[len(i)-1].isdigit():
+            if i and i[0].isalpha() and i[4]=='-' and i[len(i)-1].isdigit() and i[1]!='.':
                 reg_no = i
                 print("Regn Number: {}" .format(reg_no))
-        if(len(i)==12):
+        if(len(i)==12 and i.isupper()):
             if i and i[0].isalpha() and i[len(i)-1].isdigit():
                 eng_no = i
                 print("Engine Number: {}" .format(eng_no))
