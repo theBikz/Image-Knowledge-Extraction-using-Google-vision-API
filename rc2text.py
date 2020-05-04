@@ -3,18 +3,14 @@ from google.cloud import vision
 from google.cloud.vision import types
 import pandas as pd
 import datetime
-import nltk
-import nltk.corpus
-from nltk.tokenize import word_tokenize
-from nltk import ne_chunk
 from openpyxl import Workbook
 import openpyxl
 
-for data in os.listdir("C:/Users/BIPIN/Documents/Python Venv/RC2Text/RC"):
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] =  r'RCtoText.json'
+for data in os.listdir("C:/Users/BIPIN/Documents/Python Venv/RC2Text/RC"): #edit the path to the path of test data folder
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] =  r'RCtoText.json'  #needs api key in .json format and copy to the project folder
     client = vision.ImageAnnotatorClient()
     FILE_NAME = data
-    FOLDER_PATH = r'C:\Users\BIPIN\Documents\Python Venv\RC2Text\RC'
+    FOLDER_PATH = r'C:\Users\BIPIN\Documents\Python Venv\RC2Text\RC'  #edit the path to the path of test data folder
 
     with io.open(os.path.join(FOLDER_PATH,FILE_NAME), 'rb') as image_file:
         content = image_file.read()
@@ -123,7 +119,6 @@ for data in os.listdir("C:/Users/BIPIN/Documents/Python Venv/RC2Text/RC"):
 
     workbook_obj = openpyxl.load_workbook("RC_details.xlsx")
     book = workbook_obj.active
-    #sheet = book.active
     rows = ((reg_no,cha_no,eng_no,name,date_list[0],date_list[1]),)
     for row in rows:
         book.append(row)
